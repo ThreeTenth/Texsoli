@@ -8,7 +8,7 @@ User=root
 Group=root
 
 GuessMainPID=yes
-ExecStart=/usr/local/bin/Texsoli-api -db "/usr/local/bin"
+ExecStart=/usr/local/bin/texsoli-api -db "/usr/local/bin"
 ExecReload=/bin/kill -s QUIT $MAINPID
 ExecStop=/bin/kill -s QUIT $MAINPID
 RemainAfterExit=yes
