@@ -1,6 +1,6 @@
 
 function api(api) {
-  return "https://texsoli.whoam.xyz/" + api
+  return "https://api.texsoli.whoam.xyz/" + api
 }
 
 (function (window) {
