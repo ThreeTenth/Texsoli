@@ -107,7 +107,7 @@ function addFragment() {
 function appendFragment() {
   var editorPage = document.getElementById("editorPage")
   classie.add(editorPage, "md-show")
-  editor.prevFragID = app.fragmentID
+  editor.prevFragID = app.fragment.id
   editor.placeholder = "写一个更有趣的延续吧！"
   editor.title = "新篇章"
 }
