@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#efefef">
+
+  <title>Texsoli——This is a text solitaire game, welcome to try.</title>
+  <meta name="description" content="This is a solitaire game, welcome to try.">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ThreeTenth/css-theme@v0.1.1/colours.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css"> -->
+
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body class="red">
+  <div id="menu">
+    <div class="title">Texsoli</div> —— This is a text solitaire game, welcome to try.
+    <!-- <div style="width: 50px; height: 20px; background-color: var(--red);"></div>
+    <div style="width: 50px; height: 20px; background-color: var(--blue);"></div>
+    <div style="width: 50px; height: 20px; background-color: var(--orange);"></div>
+    <button>A-</button>
+    <button>A+</button> -->
+  </div>
+  <div id="content">
+    <div id="app" class="wrapper-content" v-bind:fid="fragment.id">
+      <div v-if="!is404">{{ fragment.text }}</div>
+      <div style="display: flex; flex-direction: column; align-items: center;" v-if="is404">
+        <h1>404</h1>
+        <div>这是一条断了尾的龙哦</div>
+        <button style="margin-top: 30px;" onclick="appendFragment()">续命+1s</button>
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+    <div id="tools">
+      <button onclick="prev()">上一节</button>
+      <button style="float: right;" onclick="appendFragment()">续命+1s</button>
+      <button style="float: right;" onclick="next()">下一节</button>
+      <!-- <button onclick="">编辑</button>
+      <button onclick="">历史</button> -->
+    </div>
+    <blockquote style="font: bolder; color: var(--fg-c); margin: 0; padding: 15px 25px" onclick="showFrags()">全部版本
+    </blockquote>
+    <div id="frags" v-if="isShow">
+      <div v-for="fragment in fragments" :key="fragment.id" v-on:click="switchFragment(fragment)">
+        <div class="wrapper-content">{{fragment.text}}</div>
+      </div>
+      <div onclick="addFragment()" v-bind:fid="prevFragID">
+        <div class="wrapper-content">
+          <button class="text" style="font-size: 2.5em">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="editorPage" class="md-modal md-effect-12" id="modal-12">
+    <div id="editor" class="md-content">
+      <h3>{{ title }}</h3>
+      <textarea v-model="message" v-bind:fid="prevFragID" :placeholder="placeholder"></textarea>
+      <button class="" onclick="submitFragment()">提交</button>
+      <button class="accent" onclick="cancelAdd()">关闭</button>
+    </div>
+  </div>
+  <!-- the overlay element -->
+  <div class="md-overlay"></div>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
