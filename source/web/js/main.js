@@ -1,4 +1,8 @@
 
+function api(api) {
+  return "https://texsoli.whoam.xyz/" + api
+}
+
 (function (window) {
 
   'use strict';
@@ -114,7 +118,7 @@ function cancelAdd() {
 }
 
 function submitFragment() {
-  axios.post('http://10.0.0.12:11823/v1/fragment', {
+  axios.post(api('/v1/fragment'), {
     prevID: editor.prevFragID,
     text: editor.message
   })
@@ -166,7 +170,7 @@ function prev() {
 
 function next() {
   var currFragID = app.fragment.id
-  var url = 'http://10.0.0.12:11823/v1/fragments'
+  var url = api('/v1/fragments')
   url += 0 == currFragID ? "" : "/" + currFragID
   axios.get(url)
     .then(function (response) {
