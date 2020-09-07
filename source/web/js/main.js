@@ -91,8 +91,13 @@ function addFragment() {
   var editorPage = document.getElementById("editorPage")
   classie.add(editorPage, "md-show")
   editor.prevFragID = frags.prevFragID
-  editor.placeholder = "写一个什么不一样的版本呢？"
-  editor.title = "新版本"
+  if (0 == frags.prevFragID) {
+    editor.title = "新的开始"
+    editor.placeholder = "写一个什么样的开头呢？？"
+  } else {
+    editor.title = "新版本"
+    editor.placeholder = "写一个什么不一样的版本呢？"
+  }
 }
 
 function appendFragment() {
